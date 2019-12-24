@@ -1,28 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="app__sidebar">
+      <PostForm />
+    </div>
+    <div class="app__content">
+      <Posts />
+      <p><strong>Post count: </strong><span>{{postCount}}</span></p>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Posts from './components/Posts'
+import PostForm from './components/PostForm'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
+  computed: {
+    ...mapGetters(['postCount'])
+  },
   components: {
-    HelloWorld
+    Posts,
+    PostForm,
   }
 }
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  max-width: 820px;
+  margin: 20px auto;
+  display: flex;
+}
+
+.app__sidebar {
+  width: 400px;
+  margin-right: 20px;
+}
+
+.app__content {
+  width: 400px;
 }
 </style>
